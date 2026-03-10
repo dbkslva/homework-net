@@ -1,0 +1,484 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 400px) {
+  body {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+html {
+  font-size: calc(10px + (14 - 10) * ((100vw - 400px) / (800 - 400)));
+}
+
+body {
+  font-family: sans-serif;
+  background: #260f26;
+}
+
+.page {
+  width: 90%;
+  max-width: 1000px;
+  margin: 3rem auto;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  background: #361f36;
+}
+
+.article {
+  padding: 5%;
+}
+
+.article__title {
+  margin-bottom: 1em;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.article__paragraph {
+  margin-bottom: 0.6em;
+  line-height: 1.5;
+  color: #fff;
+  opacity: 0.6;
+}
+
+.menu {
+  display: flex;
+  width: 90%;
+  max-width: 1000px;
+  margin: 3rem auto;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  background: #361f36;
+}
+
+.menu__item {
+  position: relative;
+  flex-grow: 1;
+  text-align: center;
+  line-height: 3rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.6;
+  border-bottom-width: 0.2rem;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+}
+
+.menu__item:hover {
+  opacity: 1;
+  border-bottom-color: hsl(60, 50%, 50%);
+}
+
+.menu__item-active,
+.menu__item-active:hover {
+  opacity: 1;
+  border-bottom-color: hsl(120, 50%, 50%);
+}
+
+/* CRUD Post styles */
+.app {
+  min-height: 100vh;
+}
+
+.post-list,
+.post-view {
+  padding: 2rem;
+}
+
+.post-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.post-list__title {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.post-list__create-btn {
+  padding: 0.5rem 1rem;
+  background: hsl(120, 40%, 45%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.post-list__create-btn:hover {
+  background: hsl(120, 40%, 55%);
+}
+
+.post-list__cards {
+  display: grid;
+  gap: 1rem;
+}
+
+.post-card {
+  padding: 1.25rem;
+  background: #4a2f4a;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.post-card--clickable {
+  cursor: pointer;
+}
+
+.post-card--clickable:hover {
+  background: #553555;
+}
+
+.post-card--editing {
+  border-color: hsl(200, 50%, 50%);
+  box-shadow: 0 0 0 2px hsla(200, 50%, 50%, 0.3);
+}
+
+.post-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.post-card__avatar,
+.post-form-card__avatar,
+.post-view-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.post-card__author,
+.post-form-card__author,
+.post-view-card__author {
+  color: #fff;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+.post-card__content,
+.post-view-card__content {
+  color: #fff;
+  opacity: 0.9;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.post-card__date,
+.post-view-card__date {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+}
+
+.post-list__loading,
+.post-list__error,
+.post-view__loading,
+.post-view__error {
+  color: #fff;
+  opacity: 0.8;
+  text-align: center;
+  padding: 2rem;
+}
+
+.post-form-card,
+.post-view-card {
+  position: relative;
+  padding: 2rem;
+  background: #4a2f4a;
+  margin: 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.post-form-card__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.post-form-card__close:hover {
+  opacity: 1;
+}
+
+.post-form-card__title {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.post-form-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.post-form-card__input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background: #361f36;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.post-form-card__input:focus {
+  outline: none;
+  border-color: hsl(120, 50%, 50%);
+}
+
+.post-form-card__submit {
+  padding: 0.5rem 1.5rem;
+  background: hsl(120, 40%, 45%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.post-form-card__submit:hover:not(:disabled) {
+  background: hsl(120, 40%, 55%);
+}
+
+.post-form-card__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.post-view-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.post-view-card__content {
+  margin-bottom: 0.75rem;
+}
+
+.post-view-card__date {
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.post-view-card__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.post-view-card__btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.post-view-card__btn--edit {
+  background: hsl(200, 50%, 45%);
+  color: #fff;
+}
+
+.post-view-card__btn--edit:hover {
+  background: hsl(200, 50%, 55%);
+}
+
+.post-view-card__btn--delete {
+  background: hsl(0, 50%, 45%);
+  color: #fff;
+}
+
+.post-view-card__btn--delete:hover:not(:disabled) {
+  background: hsl(0, 50%, 55%);
+}
+
+.post-view-card__btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Edit page: форма и список в ряд */
+.edit-page {
+  padding: 2rem;
+}
+
+.edit-filter {
+  margin-bottom: 1.5rem;
+}
+
+.edit-filter__input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: #4a2f4a;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.edit-filter__input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.edit-filter__input:focus {
+  outline: none;
+  border-color: hsl(60, 50%, 50%);
+}
+
+.edit-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #4a2f4a;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.edit-form__input {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.6rem 0.75rem;
+  background: #361f36;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.edit-form__input:focus {
+  outline: none;
+  border-color: hsl(120, 50%, 50%);
+}
+
+.edit-form__submit,
+.edit-form__cancel {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.edit-form__submit {
+  background: hsl(120, 40%, 45%);
+  color: #fff;
+}
+
+.edit-form__submit:hover:not(:disabled) {
+  background: hsl(120, 40%, 55%);
+}
+
+.edit-form__cancel {
+  background: hsl(0, 0%, 40%);
+  color: #fff;
+}
+
+.edit-form__cancel:hover {
+  background: hsl(0, 0%, 50%);
+}
+
+.edit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.edit-list__empty {
+  color: rgba(255, 255, 255, 0.5);
+  padding: 2rem;
+  text-align: center;
+}
+
+.edit-list__row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background: #4a2f4a;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.edit-list__row--editing {
+  border-color: hsl(200, 50%, 50%);
+  box-shadow: 0 0 0 2px hsla(200, 50%, 50%, 0.3);
+}
+
+.edit-list__element {
+  flex: 1;
+  min-width: 100px;
+  color: #fff;
+}
+
+.edit-list__value {
+  flex: 1;
+  min-width: 100px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.edit-list__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-list__btn {
+  padding: 0.35rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.edit-list__btn--edit {
+  background: hsl(200, 50%, 45%);
+  color: #fff;
+}
+
+.edit-list__btn--edit:hover {
+  background: hsl(200, 50%, 55%);
+}
+
+.edit-list__btn--delete {
+  background: hsl(0, 50%, 45%);
+  color: #fff;
+  width: 32px;
+  padding: 0.35rem;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.edit-list__btn--delete:hover {
+  background: hsl(0, 50%, 55%);
+}
