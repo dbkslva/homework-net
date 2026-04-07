@@ -14,9 +14,10 @@ export default function Menu() {
         <NavLink
           key={href}
           to={href}
-          className="menu__item"
-          activeClassName="menu__item-active"
-          exact={href === "/"}
+          end={href === "/"}
+          className={({ isActive }) =>
+            isActive ? "menu__item menu__item-active" : "menu__item"
+          }
         >
           {label}
         </NavLink>
