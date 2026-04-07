@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:7070";
 
@@ -7,7 +7,7 @@ export default function PostListPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${API_URL}/posts`)
@@ -51,7 +51,7 @@ export default function PostListPage() {
           <div
             key={post.id}
             className="post-card post-card--clickable"
-            onClick={() => history.push(`/posts/${post.id}`)}
+            onClick={() => navigate(`/posts/${post.id}`)}
           >
             <div className="post-card__header">
               <div className="post-card__avatar" />

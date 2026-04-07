@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:7070";
 
 export default function PostViewPage() {
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -37,7 +37,7 @@ export default function PostViewPage() {
     if (deleting) return;
     setDeleting(true);
     fetch(`${API_URL}/posts/${id}`, { method: "DELETE" }).then(() => {
-      history.push("/");
+      navigate("/");
     });
   };
 

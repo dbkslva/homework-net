@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:7070";
 const DRAFT_KEY = "crud_post_draft";
@@ -13,7 +13,7 @@ export default function PostNewPage() {
     }
   });
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handlePublish = (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ export default function PostNewPage() {
         try {
           localStorage.removeItem(DRAFT_KEY);
         } catch {}
-        history.push("/");
+        navigate("/");
       })
       .catch(() => setLoading(false));
   };
@@ -42,7 +42,7 @@ export default function PostNewPage() {
         localStorage.removeItem(DRAFT_KEY);
       }
     } catch {}
-    history.push("/");
+    navigate("/");
   };
 
   return (

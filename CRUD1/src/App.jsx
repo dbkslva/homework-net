@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PostListPage from "./pages/PostListPage";
 import PostNewPage from "./pages/PostNewPage";
 import PostViewPage from "./pages/PostViewPage";
@@ -9,11 +9,11 @@ export default function App() {
     <Router>
       <div className="app">
         <div className="page">
-          <Switch>
-            <Route path="/" exact component={PostListPage} />
-            <Route path="/posts/new" component={PostNewPage} />
-            <Route path="/posts/:id" component={PostViewPage} />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<PostListPage />} />
+            <Route path="/posts/new" element={<PostNewPage />} />
+            <Route path="/posts/:id" element={<PostViewPage />} />
+          </Routes>
         </div>
       </div>
     </Router>
